@@ -1,0 +1,10 @@
+string= "name is 2bi2jan AND is"
+print(string.title())
+print(string.capitalize())
+print(string.upper())
+print(string.lower())
+print(string.find('is',7,19))
+print(string.count('a'))
+print(string.count('a'))
+print(string.join(("a  ","  b")))
+print(', '.join(['1','2','3','4','5','6']))
