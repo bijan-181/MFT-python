@@ -40,7 +40,7 @@ def show_users():
 def show_post():
     for i in posts.values():
         print('/\\/\\/\\/\\/\\/\\/\\/\\/')
-        t = datetime.utcfromtimestamp(int(float(i['time']))).strftime('%Y-%m-%d %H:%M')
+        t = datetime.fromtimestamp(int(float(i['time']))).strftime('%Y-%m-%d %H:%M')
         post_show=[
             f"{i['author']}",
             f"{i['text']}",
@@ -50,12 +50,11 @@ def show_post():
 
 def banner(admin=False):
     s = ['----------------------------', 'be Y khosh amadid',
-         '1.', '2.', '3.', '4. show users', '5. logout', '0. exit']
+         '1.', '2.', '3. show posts', '4. show users', '5. logout', '0. exit']
     if admin:
         s.insert(7, "6. register user")
     s = '\n'.join(s)
-    menu_input = None
-    while menu_input != '0':
+    while True:
         print(s)
         menu_input = input('enter your input: ')
         if menu_input == '1':
@@ -67,11 +66,11 @@ def banner(admin=False):
         elif menu_input == '4':
             show_users()
         elif menu_input == '5':
-            return 0
+            return -1
         elif menu_input == '6' and admin:
             register_user()
         elif menu_input == '0':
-            return -1
+            return 0
 
 def login():
     username = input('username : ')
@@ -80,9 +79,9 @@ def login():
         if u['password'] == password:
             print('login success')
             stat = banner(u['admin'])
-            if stat == 0:
+            if stat == -1:
                 return
-            elif stat == -1:
+            elif stat == 0:
                 exit()
         else:
             print('invalid usename or password')
