@@ -2,7 +2,13 @@
     "1": {
         "author": "bijan",
         "text": "salam be hame Y ee ha",
-        "time": "1708589909.1241004",
-        "like": "100000"
+        "time": 1708589909.1241004,
+        "like": 100000
+    },
+    "2": {
+        "author": "bijan",
+        "text": "slm in post dovome ",
+        "time": 1709789865.232246,
+        "like": 0
     }
 }
