@@ -6,21 +6,26 @@ from models import Users, Posts
 
 
 def register_user():
-    User_username = input('username: ')
-    User_password = input('password: ')
-    User_fname = input("first name: ")
-    User_lname = input("last name")
-    User_bio = input('bio: ')
-    User_admin = input('is admin: ')
-    User_admin = True if User_admin == 'YES' else False
-    Users.create(
-        username=User_username,
-        password=User_password,
-        first_name=User_fname,
-        last_name=User_lname,
-        bio=User_bio,
-        admin=User_admin
-    )
+    while True:
+        User_username = input('username: ')
+        if not Users.select().where(Users.username == User_username).exists():
+            User_password = input('password: ')
+            User_fname = input("first name: ")
+            User_lname = input("last name")
+            User_bio = input('bio: ')
+            User_admin = input('is admin: ')
+            User_admin = True if User_admin == 'YES' else False
+            Users.create(
+                username=User_username,
+                password=User_password,
+                first_name=User_fname,
+                last_name=User_lname,
+                bio=User_bio,
+                admin=User_admin
+            )
+            break
+        else:
+            print('this username is exist. pleas enter an other one.')
 
 
 def show_users():
@@ -87,7 +92,7 @@ def login():
         u = user.get()
         if u.password == password:
             print('login success')
-            stat = banner(u, )
+            stat = banner(u)
             if stat == -1:
                 return
             elif stat == 0:
